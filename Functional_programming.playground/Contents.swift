@@ -62,6 +62,14 @@ extension Array {
 		
 		return results
 	}
+	
+	func customGenericMap<U>(_ operation: (Element) -> U) -> [U] {
+		var results: [U] = []
+		for element in self {
+			results.append(operation(element))
+		}
+		return results
+	}
 }
 
 let intArray = Array(1...100)
@@ -75,11 +83,20 @@ print(resultStrArray)
 
 // MARK: - Map
 
-func customMap(numbers: [Double], operation: (Double) -> Double) {
+func customMap(numbers: [Double], operation: (Double) -> Double) -> [Double] {
 	var result: [Double] = []
 	for number in numbers {
 		let resultingValue = operation(number)
 		result.append(resultingValue)
 	}
+	return result
 }
 
+let squaredInts = customMap(numbers: [2, 3, 9]) { (int) -> Double in
+	int * int
+}
+
+print(squaredInts)
+
+let squaredIntsGeneric = [2, 3, 9].customGenericMap { $0 * $0 }
+print(squaredIntsGeneric)
