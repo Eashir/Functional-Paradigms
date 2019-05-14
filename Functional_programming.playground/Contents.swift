@@ -1,7 +1,7 @@
 import UIKit
 
 
-// MARK: - Custom Operation Filter
+// MARK: - Filter
 
 let myRecentTransactions = [ 4.99, 112.07, 125.74, 19.99, 3.15, 288.6, 114.18, 33.19 ]
 
@@ -100,3 +100,37 @@ print(squaredInts)
 
 let squaredIntsGeneric = [2, 3, 9].customGenericMap { $0 * $0 }
 print(squaredIntsGeneric)
+//
+//let birthdayComponents = DateComponents(month: 4, day: 20)
+//let nextDate = Calendar.current.nextDate(after: Date(), matching: birthdayComponents, matchingPolicy: .nextTime)
+//let nextDateComps = Calendar.current.dateComponents([.year, .month, .day, .hour], from: nextDate!)
+////Calendar.current.dateComponents([.year, .month, .day, .hour], from: nextDate)
+////let calendar = Calendar.current
+//let dateFromComps = calendar.date(from: nextDateComps)
+//print(dateFromComps)
+
+
+extension Date {
+	
+	func formatForFlyerDetail() -> String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "EEEE, MMMM d"
+		return formatter.string(from: self)
+	}
+	
+}
+
+let iso = "2019-05-22T12:29:00-04:00"
+let formatter = DateFormatter()
+formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+formatter.locale = Locale(identifier: "en_US")
+formatter.date(from: iso)!
+if let validDate = formatter.date(from: iso) {
+	print(validDate.formatForFlyerDetail())
+}
+
+//print(iso.formatForFlyerDetail())
+
+
+
+
