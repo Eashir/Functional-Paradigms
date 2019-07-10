@@ -132,5 +132,84 @@ if let validDate = formatter.date(from: iso) {
 //print(iso.formatForFlyerDetail())
 
 
+struct Contact {
+	var firstName: String
+	var lastName: String
+}
+
+var contacts = [
+	Contact(firstName: "Kenny", lastName: "Ackerman"),
+	Contact(firstName: "Levi", lastName: "Ackerman"),
+	Contact(firstName: "Rod", lastName: "Reiss"),
+	Contact(firstName: "Armin", lastName: "Arlert"),
+	Contact(firstName: "Mikasa", lastName: "Ackerman"),
+	Contact(firstName: "Eren", lastName: "Jaegar"),
+]
+
+
+extension Array {
+	func singleCharNameFilter(_ operation: (Element) -> Bool) -> [Element] {
+		var results: [Element] = []
+		
+		for element in self {
+			if operation(element) {
+				results.append(element)
+			}
+		}
+		
+		return results
+	}
+	
+	func customGenericMap<U>(_ operation: (Element) -> U) -> [U] {
+		var results: [U] = []
+		for element in self {
+			results.append(operation(element))
+		}
+		return results
+	}
+}
+
+//Single char
+let firstNameArr = contacts.singleCharNameFilter { String(Array($0.firstName)[0]) == "A" }
+var lastFirstNames = contacts.filter { String(Array($0.firstName)[0]) == "A" || String(Array($0.lastName)[0]) == "A" }
+
+//prone to duplicates
+
+lastFirstNames.sort{ $0.firstName < $1.firstName }
+
+for contact in lastFirstNames {
+	print(contact)
+}
+
+var numArr = Array(0...30)
+
+numArr.sort{ $0 > $1}
+print(numArr)
+
+//Get all first names
+//Get all last names
+//Add both arrays
+
+//Could make a set of each array and union them to remove duplicates
+
+
+
+//Take substring
+//Check if substring is valid in first or last name
+//Alphabetize
+
+
+var searchText = "Lffylu"
+
+func findSubString(_ str: String, searchText: String) -> Bool {
+	var searchTextt = searchText.lowercased()
+	if searchTextt.contains(str.lowercased()) {
+		return true
+	}
+	return false
+}
+
+findSubString("Lu", searchText: searchText)
+
 
 
